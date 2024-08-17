@@ -8,7 +8,7 @@ import model.Produto;
 
 public class ProdutoData extends 
 Conexao implements CRUD{
-
+    public ProdutoData() throws Exception {}
     @Override
     public boolean incluir(Produto obj) throws Exception {
         String sql = "insert into tbProdutos (descricao,preco) values (?,?)";

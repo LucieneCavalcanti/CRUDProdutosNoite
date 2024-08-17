@@ -2,15 +2,19 @@ package view;
 
 import java.util.Scanner;
 
+import data.ProdutoData;
 import model.Produto;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Produto obj = new Produto();
+        
         Scanner entrada = new Scanner(System.in);
         int opcao =0;
         do {
             try {
+                
+                ProdutoData DAO = new ProdutoData();
                 System.out.println("------MENU------");
                 System.out.println("1 - Incluir Produto"+
                 "\n2 - Editar Produto"+
@@ -24,7 +28,8 @@ public class App {
                         obj.setDescricao(entrada.next());
                         System.out.println("Digite o preço:");
                         obj.setPreco(entrada.nextFloat());
-                        //insert no banco
+                        if(DAO.incluir(obj)) System.out.println("Salvo");
+                        else System.out.println("Não salvou!!!!");
                         break;
                     case 2:
                         System.out.println("Digite o id do produto:");
