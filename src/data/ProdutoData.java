@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.Produto;
@@ -32,20 +33,41 @@ Conexao implements CRUD{
 
     @Override
     public boolean excluir(int id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'excluir'");
+        String sql = "delete from tbprodutos where id=?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setInt(1, id);
+        if (ps.executeUpdate()>0) return true;
+        else return false;
     }
 
     @Override
     public Produto pesquisar(int id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pesquisar'");
+        String sql = "Select * from tbprodutos where id=?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        Produto obj = null;
+        if(rs.next()){
+            obj = new Produto(rs.getInt("id"), 
+            rs.getString("descricao"),
+            rs.getFloat("preco"));
+        }
+        return obj;
     }
 
     @Override
     public ArrayList<Produto> pesquisar(String pesquisa) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pesquisar'");
-    }
+        ArrayList<Produto> lista = new ArrayList<>();
+        String sql = "Select * from tbprodutos where descricao like ?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setString(1, pesquisa+"%");
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            Produto obj = new Produto(rs.getInt("id"), 
+            rs.getString("descricao"),
+            rs.getFloat("preco"));
+            lista.add(obj);
+        }
+        return lista;}
 
 }
