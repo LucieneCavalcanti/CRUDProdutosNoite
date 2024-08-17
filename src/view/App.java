@@ -38,7 +38,29 @@ public class App {
                         obj.setPreco(entrada.nextFloat());
                         //update no banco
                         break;
-                
+                    case 3:
+                        System.out.println("Digite o id do produto:");
+                        id = entrada.nextInt();
+                        //pesquisar no banco de dados o id
+                        //mostrar o objeto
+                        System.out.println(obj);
+                        System.out.println("Deseja realmente excluir? 1-SIM|2-NÃO");
+                        opcao = entrada.nextInt();
+                        if(opcao==1) //apaga do banco
+                            System.out.println("Apagado");
+                        else
+                            System.out.println("Não apagado!");    
+                        break;
+                    case 4:
+                        System.out.println("Digite o id do produto:");
+                        id = entrada.nextInt();
+                        obj = null;
+                        //pesquisar no banco de dados o id
+                        if(obj==null)
+                            System.out.println("Não encontrado!");
+                        else //mostrar o objeto
+                            System.out.println(obj);
+                        break;
                     default:
                         break;
                 }
