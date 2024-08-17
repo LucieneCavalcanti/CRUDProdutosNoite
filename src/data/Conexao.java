@@ -9,7 +9,9 @@ public class Conexao {
         return conexao;
     }
     public Conexao() throws Exception{
-        String url="jdbc:sqlserver://LAB01-MAQ18:1433;databaseName=bdLPIINoite;encrypt=false;trustServerCertificate=true";
+        String url="jdbc:sqlserver://LAB01-MAQ18:1433;
+        databaseName=bdLPIINoite;encrypt=false;
+        trustServerCertificate=true";
         String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
         String usuario="aluno"; //usuario do banco (SQL Server)
         String senha="dbo";
